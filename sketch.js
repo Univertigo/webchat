@@ -58,7 +58,8 @@ var socket;
 function setup() {
   createCanvas(1000, 1000);
   background(51);
-  socket = io.connect('http://localhost:8080');
+  //socket = io.connect('http://localhost:8080');
+  socket = io.connect('https://dating-chat.herokuapp.com/');
   socket.on('mouse', newDrawing);
 }
 
