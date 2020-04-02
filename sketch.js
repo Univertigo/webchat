@@ -54,18 +54,25 @@ function sendmouse(xpos, ypos) {
 
 */
 var socket;
+let capture;
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(1800, 1000);
   background(51);
+  
+  capture = createCapture(VIDEO);
+  //capture.size(320, 240);
   //socket = io.connect('http://localhost:8080');
   socket = io.connect('https://dating-chat.herokuapp.com/');
   socket.on('mouse', newDrawing);
+  socket.on('camera', newCamera);
+
 }
 
 
 
 function newDrawing(data) {
+  console.log('newDrawing executed');
   fill(255,0,100);
   ellipse(data.x, data.y, 20, 20);
 }
@@ -84,7 +91,14 @@ function mouseDragged() {
   ellipse(mouseX, mouseY, 20, 20);
 }
 
-function draw() {
+function newCamera(data) {
+  console.log('executing newCamera');
+  image(data, 600, 0, 320, 240);
+}
 
+function draw() {
+  image(capture, 0, 0, 320, 240);
+  socket.emit('camera', capture);
+  //filter(INVERT);
   // put drawing code here
 }
