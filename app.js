@@ -9,11 +9,11 @@ var path = require('path');
 // Using the filesystem module
 var fs = require('fs');
 
-const port = process.env.PORT || 3000
+//const port = process.env.PORT || 3000
 
 //http.createServer get passed func handleRequest and starts listining on a port
 var server = http.createServer(handleRequest);
-server.listen(port);
+//server.listen(port);
 
 console.log('Server started on port 8080');
 
