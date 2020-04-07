@@ -60,17 +60,20 @@ function setup() {
   createCanvas(1800, 1000);
   background(51);
   
-  capture = createCapture(VIDEO);
+  //capture = createCapture(VIDEO);
   //capture.size(320, 240);
   //socket = io.connect('http://localhost:8080');
+
+  // If you are using two separate servers, one to serve the sketch, 
+  //and one for the socket.io code, you need to provide the address/port of the second one like this:
   socket = io.connect('https://dating-chat.herokuapp.com/');
   socket.on('mouse', newDrawing);
-  socket.on('camera', newCamera);
+  //socket.on('camera', newCamera);
 
 }
 
 
-
+//Here we'll create a function that will handle our "mouse" event and do something with it
 function newDrawing(data) {
   console.log('newDrawing executed');
   fill(255,0,100);
@@ -91,10 +94,12 @@ function mouseDragged() {
   ellipse(mouseX, mouseY, 20, 20);
 }
 
+/*
 function newCamera(data) {
   console.log('executing newCamera');
   image(data, 600, 0, 320, 240);
 }
+
 
 function draw() {
   image(capture, 0, 0, 320, 240);
@@ -102,3 +107,4 @@ function draw() {
   //filter(INVERT);
   // put drawing code here
 }
+*/
